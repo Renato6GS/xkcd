@@ -3,8 +3,7 @@ import Link from 'next/link';
 import fs from 'fs/promises';
 import Image from 'next/image';
 
-import { Header } from 'components/Header';
-import Footer from 'components/Footer';
+import { Layout } from 'components/Layout';
 
 export default function Home({ latestComics }) {
   return (
@@ -15,9 +14,8 @@ export default function Home({ latestComics }) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <Header />
-
-      <main>
+      <Layout>
+        {/* <main> */}
         <h2 className='text-3xl font-bold text-center mb-10'>Latest Comics</h2>
         <section className='grid grid-cols-1 gap-4 max-w-md m-auto sm:grid-cols-2 md:grid-cols-3'>
           {latestComics.map((comic) => {
@@ -38,8 +36,9 @@ export default function Home({ latestComics }) {
             );
           })}
         </section>
-      </main>
-      <Footer />
+        {/* </main>
+      <Footer /> */}
+      </Layout>
     </div>
   );
 }

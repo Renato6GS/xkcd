@@ -41,14 +41,26 @@ export default function Comic({ img, alt, title, width, height, nextId, prevId, 
   );
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
   // Si tenemos un millón de IPs no vale la pena esto, porque se generaría un millón de páginas estáticas
   const files = await readdir('./comics');
+  let paths = [];
 
-  const paths = files.map((file) => {
-    const id = basename(file, '.json');
-    return { params: { id } };
+  // locales -> ['es', 'en']
+  locales.forEach((locale) => {
+    paths = paths.concat(
+      files.map((file) => {
+        const id = basename(file, '.json');
+        return { params: { id }, locale };
+      })
+    );
   });
+
+  // Si solo fuera un idioma:
+  // const paths = files.map((file) => {
+  //   const id = basename(file, '.json');
+  //   return { params: { id } };
+  // });
 
   return {
     paths,

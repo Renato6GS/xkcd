@@ -6,8 +6,11 @@ import Link from 'next/link';
 
 import algoliasearch from 'algoliasearch/lite';
 import { search } from 'services/search';
+import { useI18N } from 'context/i18n';
 
 export default function Search({ query, results }) {
+  const { t } = useI18N();
+
   return (
     <>
       <Head>
@@ -16,9 +19,7 @@ export default function Search({ query, results }) {
       </Head>
       {/* <Header /> */}
       <Layout>
-        <h1>
-          {results.length} Resultador para {query}
-        </h1>
+        <h1>{t('SEARCH_RESULTS_TITLE', results.length, query)}</h1>
         {results.map((result, id) => {
           return (
             <Link href={`/comic/${result.id}`} key={result.id}>

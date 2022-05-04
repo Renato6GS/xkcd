@@ -24,6 +24,7 @@ export function Header() {
   };
 
   const restOfLocales = locales.filter((l) => l !== locale);
+  console.log(restOfLocales);
 
   return (
     <header className='flex justify-between items-center p-4 max-w-xl m-auto'>
@@ -43,7 +44,8 @@ export function Header() {
           </li>
 
           <li>
-            <Link href={`/`} locale={restOfLocales[0]}>
+            {/* <Link href={`/`} locale={restOfLocales[0]}> */}
+            <Link href={`/`} locale={'es'}>
               <a className='text-blue-700 font-bold'>{restOfLocales[0]}</a>
             </Link>
           </li>
